@@ -1,1 +1,4 @@
 bin/com/App.class
+build/classes/com/App.class
+.gitignore
+dist/Test.jar
