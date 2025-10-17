@@ -36,4 +36,14 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+      run: ant -noinput -buildfile build.xml 2>&1 | tee build.log
+
+    - name: Send logs to MCP
+      env:
+        MCP_SERVER_URL: ${{ secrets.MCP_SERVER_URL }}
+      run: |
+        if [ -n "$MCP_SERVER_URL" ]; then
+          curl -X POST "$MCP_SERVER_URL/ingest" --data-binary @build.log
+        else
+          echo "MCP_SERVER_URL not set; skipping sending logs"
+        fi
