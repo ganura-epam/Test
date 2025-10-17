@@ -2,3 +2,5 @@ bin/com/App.class
 build/classes/com/App.class
 .gitignore
 dist/Test.jar
+mcp-server-java/out/McpServer.class
+mcp-server-java/server.log
