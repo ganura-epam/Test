@@ -7,7 +7,7 @@ public class App {
     }
 
     // Adds two integers and returns the sum
-    public static int add(int a, int b) {
+    public static int add1(int a, int b) {
         return a + b;
     }
 }
