@@ -1,6 +1,0 @@
-{
-    "port": 8080,
-    "logDirectory": "/tmp/mcp_logs",
-    "enableAuthentication": false,
-    "enableLogging": true
-}
