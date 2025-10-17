@@ -37,7 +37,6 @@ jobs:
         distribution: 'temurin'
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml 2>&1 | tee build.log
-
     - name: Send logs to MCP
       env:
         MCP_SERVER_URL: ${{ secrets.MCP_SERVER_URL }}
