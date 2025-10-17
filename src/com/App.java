@@ -4,7 +4,7 @@ public class App {
         System.out.println("Hello, World!");
         System.out.println("2 + 3 = " + add(2, 3));
         System.out.println("2 + 3 = " + add(2, 3));
-        System.out.println("2 + 3 = " + add123(2, 3));
+        System.out.println("2 + 3 = " + add(7, 3));
     }
 
     // Adds two integers and returns the sum
