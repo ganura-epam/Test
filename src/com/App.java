@@ -4,6 +4,7 @@ public class App {
         System.out.println("Hello, World!");
         System.out.println("2 + 3 = " + add(2, 3));
         System.out.println("5 + 7 = " + add(5, 7));
+         System.out.println("5 + 7 = " + add(6, 7));
     }
 
     // Adds two integers and returns the sum
