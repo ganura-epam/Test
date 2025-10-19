@@ -4,3 +4,4 @@ build/classes/com/App.class
 dist/Test.jar
 mcp-server-java/out/McpServer.class
 mcp-server-java/server.log
+src/com/App.class
