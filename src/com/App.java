@@ -18,4 +18,9 @@ public class App {
     public static int subtract(int a, int b) {
         return a - b;
     }
+
+    // Subtracts second double from first and returns the difference
+    public static double subtract(double a, double b) {
+        return a - b;
+    }
 }
