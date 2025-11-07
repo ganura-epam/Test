@@ -5,6 +5,7 @@ public class App {
         System.out.println("2 + 3 = " + add(2, 3));
         System.out.println("7 + 3 = " + add(7, 3));
         System.out.println("7 - 3 = " + subtract(7, 3));
+        System.out.println("6 - 3 = " + subtract(6, 3.5));
     
     }
 
