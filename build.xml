@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Test" default="jar" basedir=".">
     <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="test.classes.dir" value="${build.dir}/test-classes"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="test.reports.dir" value="${build.dir}/test-reports"/>
     <property name="dist.dir" value="dist"/>
     <property name="jar.name" value="Test.jar"/>
+    
+    <!-- Define classpath for JUnit -->
+    <path id="test.classpath">
+        <pathelement location="${classes.dir}"/>
+        <pathelement location="${test.classes.dir}"/>
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
 
     <target name="clean" description="Remove build and dist directories">
         <delete dir="${build.dir}"/>
@@ -13,6 +26,8 @@
 
     <target name="init" description="Create build directories">
         <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${test.classes.dir}"/>
+        <mkdir dir="${test.reports.dir}"/>
         <mkdir dir="${dist.dir}"/>
     </target>
 
@@ -30,5 +45,34 @@
 
     <target name="run" depends="jar" description="Run the application from the JAR">
         <java jar="${dist.dir}/${jar.name}" fork="true"/>
+    </target>
+    
+    <target name="compile-tests" depends="compile" description="Compile the test sources">
+        <javac srcdir="${test.dir}" destdir="${test.classes.dir}" 
+               includeantruntime="false" source="1.8" target="1.8">
+            <classpath refid="test.classpath"/>
+        </javac>
+    </target>
+    
+    <target name="test" depends="compile-tests" description="Run JUnit tests">
+        <junit printsummary="on" haltonfailure="no" fork="true">
+            <classpath refid="test.classpath"/>
+            <formatter type="plain" usefile="false"/>
+            <formatter type="xml"/>
+            <batchtest todir="${test.reports.dir}">
+                <fileset dir="${test.classes.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+    
+    <target name="test-report" depends="test" description="Generate test report">
+        <junitreport todir="${test.reports.dir}">
+            <fileset dir="${test.reports.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.reports.dir}/html"/>
+        </junitreport>
     </target>
 </project>

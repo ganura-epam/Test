@@ -37,3 +37,11 @@ jobs:
         distribution: 'temurin'
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml 2>&1 | tee build.log
+    - name: Run tests
+      run: ant -noinput -buildfile build.xml test 2>&1 | tee test.log
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: build/test-reports/
